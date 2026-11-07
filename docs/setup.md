@@ -29,7 +29,16 @@ Serve the app locally with `python3 -m http.server 8000 --directory web`.
 3. Get your chat id: open `https://api.telegram.org/bot<TOKEN>/getUpdates` in a browser and read `message.chat.id`. Do this in a private window and do not share the URL.
 4. Put that id in your own `parents` row. You are the parent for the first test.
 
-## 4. Deploy
+## 4. Deploy the mark_event function
+
+1. In Supabase, open **Edge Functions > Deploy a new function > Via Editor**.
+2. Name it `mark_event`. Paste the code from `supabase/functions/mark_event/index.ts`. Deploy.
+3. Open the function's settings and turn **off** "Verify JWT with legacy secret". The function checks the signed-in driver itself.
+4. Open **Edge Functions > Secrets** and add `TELEGRAM_BOT_TOKEN` with your bot token. Supabase fills in `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` itself.
+
+Without the token the taps still save. Only the Telegram message is skipped.
+
+## 5. Deploy the app
 
 1. Push the repo to GitHub.
 2. In Vercel, import the repo. Set **Root Directory** to `web`. Framework preset: **Other**. No build command.
