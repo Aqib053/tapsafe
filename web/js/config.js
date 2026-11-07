@@ -4,6 +4,6 @@
 //
 // Leave both empty to run in demo mode (nothing is saved or sent).
 export const config = {
-  supabaseUrl: "",
-  supabaseAnonKey: "",
+  supabaseUrl: "https://wezlcctfzbfdturzlvrq.supabase.co",
+  supabaseAnonKey: "sb_publishable_gRNmXNuYdzh-jjL5_83PUw_f86zNXeH",
 };
