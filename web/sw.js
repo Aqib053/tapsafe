@@ -4,10 +4,10 @@ const CACHE = "tapsafe-v1";
 const SHELL = [
   "./",
   "index.html",
-  "styles.css",
-  "app.js",
-  "api.js",
-  "config.js",
+  "css/styles.css",
+  "js/app.js",
+  "js/api.js",
+  "js/config.js",
   "manifest.webmanifest",
   "icons/icon.svg",
 ];
