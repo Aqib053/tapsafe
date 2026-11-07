@@ -26,20 +26,20 @@ Parents get a Telegram message when their child boards a private school van and 
 ## Folders
 
 ```
-index.html        driver app (static web app, no build step)
-app.js            screens and the offline queue
-api.js            Supabase calls, plus a demo mode with no backend
-config.js         Supabase URL and anon key (public values only)
-styles.css        styles
-sw.js, manifest.webmanifest, icons/   installable app files
+web/              the driver app (static, no build step)
+  index.html
+  sw.js, manifest.webmanifest
+  js/             app.js (screens, offline queue), api.js (Supabase and demo mode), config.js
+  css/            styles.css
+  icons/
+supabase/         database schema, later Edge Functions
+docs/             setup steps and notes
 CLAUDE.md         project context for Claude Code
-docs/setup.md     setup steps
-supabase/         database schema
 ```
 
 ## Try it
 
-Run `python3 -m http.server 8000` in this folder and open `http://localhost:8000/?demo`. Any phone and PIN work. Nothing is saved or sent. See `docs/setup.md` for the real setup.
+Run `python3 -m http.server 8000 --directory web` and open `http://localhost:8000/?demo`. Any phone and PIN work. Nothing is saved or sent. See `docs/setup.md` for the real setup.
 
 ## Privacy
 

@@ -6,7 +6,7 @@ Order matters. Test on yourself first, then add the van.
 
 Open the site with `?demo` on the end, for example `http://localhost:8000/?demo`. Any phone and PIN work. Nothing is saved.
 
-Serve the folder locally with `python3 -m http.server 8000`.
+Serve the app locally with `python3 -m http.server 8000 --directory web`.
 
 ## 2. Supabase
 
@@ -20,7 +20,7 @@ Serve the folder locally with `python3 -m http.server 8000`.
    - `drivers`: name, phone, van_number, and `auth_user_id` set to the user id from step 3.
    - `parents`: name, phone, and `telegram_chat_id`.
    - `children`: name, `parent_id`, `driver_id`, stop, `drop_order`.
-5. Copy the project URL and the **anon** key into `config.js`. Never copy the service role key anywhere in this repo.
+5. Copy the project URL and the **anon** key into `web/js/config.js`. Never copy the service role key anywhere in this repo.
 
 ## 3. Telegram (test on yourself)
 
@@ -32,5 +32,5 @@ Serve the folder locally with `python3 -m http.server 8000`.
 ## 4. Deploy
 
 1. Push the repo to GitHub.
-2. In Vercel, import the repo. Framework preset: **Other**. No build command. No output directory.
+2. In Vercel, import the repo. Set **Root Directory** to `web`. Framework preset: **Other**. No build command.
 3. Open the Vercel URL on the Android phone and use **Add to Home screen**.
