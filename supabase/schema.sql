@@ -49,6 +49,8 @@ create table public.events (
   child_id uuid not null references public.children (id),
   type     text not null check (type in ('boarded', 'dropped', 'absent')),
   time     timestamptz not null default now(),
+  -- set by check_overdue on the boarded row, so each child is reminded once
+  overdue_notified_at timestamptz,
   -- a retried offline tap must not create a duplicate event
   unique (trip_id, child_id, type)
 );
@@ -78,7 +80,10 @@ revoke all on public.drivers, public.parents, public.children,
 
 grant select on public.drivers, public.children, public.trips, public.events
   to authenticated;
-grant insert, update on public.trips to authenticated;
+-- Column-level: the app can set only these. start_time and driver_id on
+-- update stay fixed, so the overdue clock can't be moved.
+grant insert (driver_id)           on public.trips to authenticated;
+grant update (status, end_time)    on public.trips to authenticated;
 -- No grant on parents for anyone. Only the service role reads it.
 -- No insert on events: the mark_event Edge Function writes events.
 
@@ -97,6 +102,45 @@ $$;
 
 revoke execute on function public.current_driver_id() from public, anon;
 grant  execute on function public.current_driver_id() to authenticated;
+
+-- ------------------------------------------------------------ rule 2: End Trip
+-- A trip can end only when every child on the van has a `dropped` or
+-- `absent` event in it. Enforced here so no client can skip it.
+
+create or replace function public.guard_trip_end()
+returns trigger
+language plpgsql
+security definer
+set search_path = ''
+as $$
+begin
+  if old.status = 'completed' then
+    raise exception 'Trip already ended';
+  end if;
+
+  if new.status = 'completed' then
+    if exists (
+      select 1 from public.children c
+      where c.driver_id = new.driver_id
+        and not exists (
+          select 1 from public.events e
+          where e.trip_id = new.id
+            and e.child_id = c.id
+            and e.type in ('dropped', 'absent')
+        )
+    ) then
+      raise exception 'Some children are not dropped or marked absent';
+    end if;
+    new.end_time := now();
+  end if;
+
+  return new;
+end;
+$$;
+
+create trigger trips_guard_end
+  before update on public.trips
+  for each row execute function public.guard_trip_end();
 
 -- ------------------------------------------------------------ policies
 

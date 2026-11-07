@@ -2,7 +2,7 @@
 
 Parents get a Telegram message when their child boards a private school van and again when the child reaches home. The driver taps once per child.
 
-**Status:** pilot with one van. `index.html` is a clickable prototype. Nothing is saved yet and no messages are sent.
+**Status:** pilot with one van. The driver app works in demo mode. The Supabase function that saves taps and sends Telegram messages is not written yet.
 
 ## How a trip works (school pickup to home drop)
 
@@ -26,15 +26,20 @@ Parents get a Telegram message when their child boards a private school van and 
 ## Folders
 
 ```
-index.html        clickable prototype (driver app and parent view)
+index.html        driver app (static web app, no build step)
+app.js            screens and the offline queue
+api.js            Supabase calls, plus a demo mode with no backend
+config.js         Supabase URL and anon key (public values only)
+styles.css        styles
+sw.js, manifest.webmanifest, icons/   installable app files
 CLAUDE.md         project context for Claude Code
-docs/             pilot notes and decisions
-supabase/         database schema (to be added)
+docs/setup.md     setup steps
+supabase/         database schema
 ```
 
-## Try the prototype
+## Try it
 
-Open `index.html` in a browser. Log in as the driver, start the trip and tap the buttons. The parent view updates as you go.
+Run `python3 -m http.server 8000` in this folder and open `http://localhost:8000/?demo`. Any phone and PIN work. Nothing is saved or sent. See `docs/setup.md` for the real setup.
 
 ## Privacy
 
