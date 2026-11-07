@@ -13,7 +13,7 @@ Serve the app locally with `python3 -m http.server 8000 --directory web`.
 1. Create a free project.
 2. Run `supabase/schema.sql` in the SQL editor.
 3. In **Authentication > Users**, add a driver login:
-   - Email: the phone number with country code, then `@tapsafe.local`. Example: `919999999999@tapsafe.local`.
+   - Email: the 10-digit phone number, then `@tapsafe.local`. Example: `9999999999@tapsafe.local`. No country code.
    - Password: the driver's PIN. Supabase may require 6 or more characters, so use a 6-digit PIN.
    - Turn on "Auto confirm user".
 4. In the table editor, add rows. Use your own details for the first test.
