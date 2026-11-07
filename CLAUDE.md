@@ -53,6 +53,11 @@ Trips and events are created by the app each day. The other tables change rarely
 - Use the service role key only inside Edge Functions.
 - The driver's phone is Android on mobile data. Keep the driver screen to one tap per child.
 
+## Working rules
+
+- Small commits. One change per commit, one topic per pull request. Never push straight to `main`.
+- Keep files in folders: app in `web/` (`js/`, `css/`, `icons/`), database in `supabase/`, notes in `docs/`. No loose files in the repo root except README.md and CLAUDE.md.
+
 ## Writing style
 
 Keep UI text and messages short and plain. No filler openers, no slogans.
