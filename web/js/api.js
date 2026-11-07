@@ -12,11 +12,10 @@ export const demoMode =
   !config.supabaseAnonKey ||
   new URLSearchParams(location.search).has("demo");
 
-// The admin creates each driver's login with this email and the PIN as the
-// password. See docs/setup.md.
+// The admin creates each driver's login with this email (the 10-digit phone
+// number, no country code) and the PIN as the password. See docs/setup.md.
 export function phoneToEmail(phone) {
-  let digits = String(phone).replace(/\D/g, "");
-  if (digits.length === 10) digits = "91" + digits;
+  const digits = String(phone).replace(/\D/g, "").slice(-10);
   return `${digits}@tapsafe.local`;
 }
 
