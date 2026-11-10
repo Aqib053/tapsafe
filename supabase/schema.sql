@@ -15,7 +15,8 @@ create table public.drivers (
   auth_user_id uuid unique references auth.users (id) on delete set null,
   name         text not null,
   phone        text not null unique,
-  van_number   text not null
+  van_number   text not null,
+  telegram_chat_id bigint
 );
 
 create table public.parents (
