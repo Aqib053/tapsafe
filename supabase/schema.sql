@@ -23,7 +23,9 @@ create table public.parents (
   id               uuid primary key default gen_random_uuid(),
   name             text not null,
   phone            text not null,
-  telegram_chat_id bigint
+  telegram_chat_id bigint,
+  invite_code      text not null unique
+                   default substr(replace(gen_random_uuid()::text, '-', ''), 1, 16)
 );
 
 create table public.children (
