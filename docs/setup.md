@@ -51,7 +51,23 @@ If a child is on board 60 minutes after the trip started, the parent and the dri
 
 To test quickly, add the secret `OVERDUE_MINUTES` with value `2`, start a trip, tap Boarded, and wait up to 5 minutes. Delete that secret afterwards so the real limit is 60.
 
-## 6. Deploy the app
+## 6. Parent invite links
+
+Parents connect Telegram with one tap. No ids are copied by hand.
+
+1. Run `supabase/migrations/003_invite_code.sql`. Every parent row gets an `invite_code`.
+2. Deploy the function `telegram_webhook` (Edge Functions > Via Editor). Turn **off** "Verify JWT with legacy secret", because Telegram does not send one.
+3. Make a random string of letters and digits, at least 16 characters. Save it as the Edge Function secret `TELEGRAM_WEBHOOK_SECRET`.
+4. In the terminal run `node scripts/set-webhook.mjs`. Type the bot token and that same string when asked. Nothing is stored.
+5. For each parent, send them this link. Use your bot's username and the parent's `invite_code` from the table:
+   `https://t.me/<bot_username>?start=<invite_code>`
+6. The parent taps it and presses Start. Their `telegram_chat_id` fills in and the bot replies with their children's names.
+
+A link works for one Telegram account. If someone else opens an already used link, the bot refuses. To move a parent to a new account, clear their `telegram_chat_id` in the table and send the link again.
+
+To test, add a new parent row with no `telegram_chat_id`, open its link from a second Telegram account, and watch the row fill in.
+
+## 7. Deploy the app
 
 1. Push the repo to GitHub.
 2. In Vercel, import the repo. Set **Root Directory** to `web`. Framework preset: **Other**. No build command.
