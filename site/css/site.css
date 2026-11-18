@@ -5,6 +5,7 @@
   --cream: #f6f2e8;
   --tint: #f3e8c3;
   --ink: #1a1a17;
+  --black: #0f0f0e;
   --muted: #5b594f;
   --line: #d8d3c4;
   --yellow: #f5b800;
@@ -113,10 +114,10 @@ h1 em { color: var(--yellow); font-style: normal; }
 .button:hover { filter: brightness(1.06); }
 
 /* problem line */
-.problem { padding: clamp(3rem, 8vw, 6rem) 0; border-bottom: 1px solid var(--line); }
+.problem { padding: clamp(3rem, 8vw, 6rem) 0; background: var(--black); color: var(--cream); }
 .label {
   margin-bottom: 1rem;
-  color: var(--green-text);
+  color: var(--yellow);
   font-size: 0.8125rem;
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -130,6 +131,7 @@ h1 em { color: var(--yellow); font-style: normal; }
 }
 
 /* sections */
+.problem-line em { color: var(--yellow); font-style: normal; }
 .section { padding: clamp(3rem, 7vw, 5.5rem) 0; }
 .tint { background: var(--tint); }
 .rule { border-top: 1px solid var(--line); }
@@ -187,9 +189,9 @@ h2 { font-size: clamp(1.75rem, 3.6vw, 2.5rem); line-height: 1.15; }
 .cta p { margin-bottom: 0; max-width: 36rem; }
 
 /* footer */
-.foot { padding: 1.5rem 0 2.5rem; color: var(--muted); font-size: 0.9375rem; }
+.foot { padding: 1.75rem 0 2.5rem; background: var(--black); color: #b9b6aa; font-size: 0.9375rem; }
 .foot-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
-.foot .brand { color: var(--ink); }
+.foot .brand { color: var(--cream); }
 .foot p { margin: 0; }
 
 /* wide screens */
