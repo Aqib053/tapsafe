@@ -6,8 +6,10 @@ TapSafe sends a parent a Telegram message when their child boards a private scho
 
 ## Current state
 
-- `index.html` is a clickable prototype (driver app and parent view). State lives in memory. Nothing is saved and no message is sent.
-- No backend, database or bot exists yet.
+- The driver app works against a live Supabase project. A trip was tested end to end with real Telegram messages.
+- The app lives in `web/`. It is static (no build step) and installable as a PWA. Demo mode (`?demo`, or empty `config.js`) runs with no backend.
+- Supabase holds the schema, three Edge Functions and the overdue schedule. See "Backend" below.
+- Not done yet: Vercel deploy, the real-van test, and running the wrong-child test script.
 - The repo is public.
 
 ## Decisions
@@ -23,28 +25,44 @@ TapSafe sends a parent a Telegram message when their child boards a private scho
 
 ## Data model
 
-- `drivers`: name, phone, van_number
-- `parents`: name, phone, telegram_chat_id
+- `drivers`: name, phone, van_number, auth_user_id, telegram_chat_id
+- `parents`: name, phone, telegram_chat_id, invite_code
 - `children`: name, parent_id, driver_id, stop, drop_order
 - `trips`: driver_id, start_time, end_time, status (`active` or `completed`)
-- `events`: trip_id, child_id, type (`boarded`, `dropped` or `absent`), time
+- `events`: trip_id, child_id, type (`boarded`, `dropped` or `absent`), time, overdue_notified_at
 
-Trips and events are created by the app each day. The other tables change rarely.
+Trips are created by the app each day. Events are written only by the `mark_event` Edge Function. The other tables change rarely.
+
+The driver's login is a Supabase Auth user with email `<10-digit phone>@tapsafe.local` and the PIN as password. `drivers.auth_user_id` links the two.
+
+## Backend
+
+- `supabase/schema.sql`: baseline schema with Row Level Security. `supabase/migrations/` holds changes for a project that already ran the baseline.
+- `supabase/functions/mark_event`: saves a tap and messages the parent. Checks the caller is the driver and the child is on their list.
+- `supabase/functions/check_overdue`: runs every 5 minutes from pg_cron. Needs the `CRON_SECRET` secret and a matching `cron_secret` in Vault.
+- `supabase/functions/telegram_webhook`: saves a parent's chat id when they press Start from their invite link. Needs `TELEGRAM_WEBHOOK_SECRET`.
+- Edge Functions are deployed by pasting code in the dashboard. Turn off "Verify JWT with legacy secret" on each one.
+- Secrets live only in Supabase: `TELEGRAM_BOT_TOKEN`, `CRON_SECRET`, `TELEGRAM_WEBHOOK_SECRET`, and `OVERDUE_MINUTES` (testing only, default 60).
+- `scripts/` holds Node scripts for testing and setup. They ask for secrets at a prompt and never store them.
+- `docs/setup.md` has the setup steps.
 
 ## Rules the app must follow
 
-1. **Start Trip** creates a trip. Each tap creates an event and sends a Telegram message to the parent.
-2. **End Trip** is blocked while any child is still `boarded` or has no status yet.
-3. **Overdue check:** if a child is `boarded` and not `dropped` 60 minutes after the trip started, message the parent and the driver. Run it with pg_cron every 5 to 10 minutes. Remind each child once.
-4. **Wrong child:** if a scanned child is not on this van's list, the phone beeps and shows "Not on your list", and that child's parent is alerted.
-5. **Offline:** taps are saved on the phone and sent when the network returns.
+Status in brackets.
+
+1. **Start Trip** creates a trip. Each tap creates an event and sends a Telegram message to the parent. [Done]
+2. **End Trip** is blocked while any child is still `boarded` or has no status yet. [Done, enforced by a database trigger]
+3. **Overdue check:** if a child is `boarded` and not `dropped` 60 minutes after the trip started, message the parent and the driver. Run it with pg_cron every 5 to 10 minutes. Remind each child once. [Done and tested]
+4. **Wrong child:** if a scanned child is not on this van's list, the phone beeps and shows "Not on your list", and that child's parent is alerted. [Enforced in `mark_event`. The app only lists the driver's own children, so it cannot happen from the UI until QR cards exist. Script test not run yet.]
+5. **Offline:** taps are saved on the phone and sent when the network returns. [Done]
 
 ## Message text
 
 - `Rahul boarded KA-01-XX-1234`
 - `Rahul reached home`
 - `Rahul was marked absent today`
-- `Rahul has not been dropped yet. Please call the driver.`
+- `Rahul has not been dropped yet. Please call the driver.` (to the parent)
+- `Rahul has not been dropped yet.` (to the driver)
 
 ## Constraints
 
@@ -64,9 +82,11 @@ Keep UI text and messages short and plain. No filler openers, no slogans.
 
 ## Next steps
 
-1. Write `supabase/schema.sql` for the five tables with Row Level Security.
-2. Create the Telegram bot and send a test message.
-3. Connect the driver buttons in `index.html` to Supabase.
-4. Write the `mark_event` Edge Function that saves an event and sends the message.
-5. Write the `check_overdue` function and schedule it with pg_cron.
-6. Add the offline queue.
+1. Deploy `web/` to Vercel (Root Directory `web`) and install it on the driver's phone.
+2. Run `scripts/test-mark-event.mjs` for the wrong-child rule.
+3. Real-van test with the pilot driver. Note the delay, missed taps and feedback.
+4. Make rejected-tap errors stay on screen until dismissed.
+5. Add a "sent" tick on each child row, using the `sent` value `mark_event` returns.
+6. Update the service worker so a new deploy replaces the cached app.
+7. Turn off "Automatically expose new tables" and grant `service_role` explicitly in the schema.
+8. Deploy Edge Functions with the Supabase CLI instead of pasting code.
