@@ -76,9 +76,32 @@
           <p>Two short messages for each trip. Nothing to open, nothing to log in to. Parents only need Telegram.</p>
           <p class="note">Example messages. The name and the van number are made up.</p>
         </div>
-        <div class="chat" role="img" aria-label="Two example Telegram messages: Rahul boarded KA-01-XX-1234, and Rahul reached home.">
-          <p class="msg"><span>Rahul boarded KA-01-XX-1234</span><time>2:41 pm</time></p>
-          <p class="msg"><span>Rahul reached home</span><time>3:12 pm</time></p>
+        <div class="phone" role="img" aria-label="A parent's phone with Telegram open. A message arrives: Rahul boarded KA-01-XX-1234. Later another arrives: Rahul reached home.">
+          <div class="phone-screen" aria-hidden="true">
+            <div class="chat-head">
+              <svg class="logo logo-dark" viewBox="0 0 512 512">
+                <rect width="512" height="512" rx="96"/>
+                <circle cx="256" cy="256" r="132" fill="none" stroke-width="32"/>
+                <path d="M196 262l44 44 84-96" fill="none" stroke-width="32" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <div>
+                <p class="chat-name">TapSafe</p>
+                <p class="chat-sub">bot</p>
+              </div>
+            </div>
+            <div class="chat-body">
+              <p class="day">Today</p>
+              <div class="slot">
+                <p class="typing typing-1"><i></i><i></i><i></i></p>
+                <p class="bubble bubble-1">Rahul boarded KA-01-XX-1234<time>2:41 pm</time></p>
+              </div>
+              <div class="slot">
+                <p class="typing typing-2"><i></i><i></i><i></i></p>
+                <p class="bubble bubble-2">Rahul reached home<time>3:12 pm</time></p>
+              </div>
+            </div>
+            <div class="chat-input"><span>Message</span></div>
+          </div>
         </div>
       </div>
     </section>
@@ -130,5 +153,18 @@
       <p>Built in Bangalore.</p>
     </div>
   </footer>
+  <script>
+    (function () {
+      var phone = document.querySelector(".phone");
+      if (!phone || !("IntersectionObserver" in window)) return;
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      new IntersectionObserver(function (entries, observer) {
+        if (entries[0].isIntersecting) {
+          phone.classList.add("animate");
+          observer.disconnect();
+        }
+      }, { threshold: 0.5 }).observe(phone);
+    })();
+  </script>
 </body>
 </html>
