@@ -74,7 +74,7 @@ Status in brackets.
 ## Working rules
 
 - Small commits. One change per commit, one topic per pull request. Never push straight to `main`.
-- Keep files in folders: app in `web/` (`js/`, `css/`, `icons/`), database in `supabase/`, notes in `docs/`. No loose files in the repo root except README.md and CLAUDE.md.
+- Keep files in folders: app in `web/` (`js/`, `css/`, `icons/`), landing page in `site/`, database in `supabase/`, scripts in `scripts/`, notes in `docs/`. No loose files in the repo root except README.md and CLAUDE.md.
 
 ## Writing style
 

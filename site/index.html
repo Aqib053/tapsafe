@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TapSafe: a message when your child is home</title>
+  <meta name="description" content="TapSafe sends a parent a Telegram message when their child gets on the school van and when they reach home. The driver taps once per child. Piloting in Bangalore.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="TapSafe: a message when your child is home">
+  <meta property="og:description" content="A Telegram message when your child gets on the school van and when they reach home. One tap per child for the driver. Piloting in Bangalore.">
+  <meta name="theme-color" content="#0a5c42">
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/site.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="navbar">
+    <div class="wrap nav">
+      <a class="brand" href="#top" aria-label="TapSafe home">
+        <svg class="logo" viewBox="0 0 512 512" aria-hidden="true">
+          <rect width="512" height="512" rx="96"/>
+          <circle cx="256" cy="256" r="132" fill="none" stroke-width="32"/>
+          <path d="M196 262l44 44 84-96" fill="none" stroke-width="32" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>TapSafe</span>
+      </a>
+      <a class="nav-link" href="#contact">Get in touch</a>
+    </div>
+    </div>
+
+    <div class="wrap hero-grid" id="top">
+      <div class="hero-copy">
+        <p class="eyebrow">Piloting on one van in Bangalore</p>
+        <h1>A message when your child is <em>home.</em></h1>
+        <p class="lead">TapSafe tells a parent on Telegram when their child gets on the school van and when they reach home. The driver taps once per child. That is all the driver has to do.</p>
+        <p><a class="button yellow" href="#contact">Get in touch</a></p>
+      </div>
+      <figure class="shot">
+        <img src="images/driver-app.png" width="480" height="860" alt="The driver app during a trip. A list of four children. One is home, one is on board, two have not boarded. Each row has one large button.">
+        <figcaption>The driver app, with demo data.</figcaption>
+      </figure>
+    </div>
+  </header>
+
+  <main>
+    <section class="problem" aria-labelledby="problem">
+      <div class="wrap">
+        <p class="label" id="problem">The problem</p>
+        <p class="problem-line">Most afternoons, a parent somewhere is calling a van driver to ask: <em>has my child reached yet?</em></p>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="how">
+      <div class="wrap">
+        <h2 id="how">How a trip works</h2>
+        <ol class="steps">
+          <li>
+            <h3>Child gets on</h3>
+            <p>The driver starts the trip and taps the child's name.</p>
+          </li>
+          <li>
+            <h3>Parent is told</h3>
+            <p>A Telegram message reaches the parent right away.</p>
+          </li>
+          <li>
+            <h3>Child reaches home</h3>
+            <p>At the stop the driver taps again, and the parent gets a second message.</p>
+          </li>
+        </ol>
+        <p class="after">If a child has been on board for an hour without being dropped, the parent and the driver both get a reminder.</p>
+      </div>
+    </section>
+
+    <section class="section tint" aria-labelledby="see">
+      <div class="wrap split">
+        <div>
+          <h2 id="see">What a parent sees</h2>
+          <p>Two short messages for each trip. Nothing to open, nothing to log in to. Parents only need Telegram.</p>
+          <p class="note">Example messages. The name and the van number are made up.</p>
+        </div>
+        <div class="phone" role="img" aria-label="A parent's phone with Telegram open. A message arrives: Rahul boarded KA-01-XX-1234. Later another arrives: Rahul reached home.">
+          <div class="phone-screen" aria-hidden="true">
+            <div class="chat-head">
+              <svg class="logo logo-dark" viewBox="0 0 512 512">
+                <rect width="512" height="512" rx="96"/>
+                <circle cx="256" cy="256" r="132" fill="none" stroke-width="32"/>
+                <path d="M196 262l44 44 84-96" fill="none" stroke-width="32" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <div>
+                <p class="chat-name">TapSafe</p>
+                <p class="chat-sub">bot</p>
+              </div>
+            </div>
+            <div class="chat-body">
+              <p class="day">Today</p>
+              <div class="slot">
+                <p class="typing typing-1"><i></i><i></i><i></i></p>
+                <p class="bubble bubble-1">Rahul boarded KA-01-XX-1234<time>2:41 pm</time></p>
+              </div>
+              <div class="slot">
+                <p class="typing typing-2"><i></i><i></i><i></i></p>
+                <p class="bubble bubble-2">Rahul reached home<time>3:12 pm</time></p>
+              </div>
+            </div>
+            <div class="chat-input"><span>Message</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="why">
+      <div class="wrap split">
+        <h2 id="why">Why taps and not GPS</h2>
+        <div>
+          <p>Many school bus apps track the vehicle with GPS and are sold to schools. A lot of families use a private van that no school manages.</p>
+          <p>TapSafe runs on the driver's own Android phone, needs no hardware, and does not need the school to be involved.</p>
+          <p>It also works on a weak connection. Taps are saved on the phone and sent when the network comes back.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section rule" aria-labelledby="limits">
+      <div class="wrap split">
+        <h2 id="limits">What it does not do</h2>
+        <ul class="plain">
+          <li>It does not show a live map.</li>
+          <li>It covers the afternoon trip only, from school to home.</li>
+          <li>Alerts go to the parent and the driver, and to nobody else.</li>
+          <li>The driver's app never shows a parent's phone number or Telegram details.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="cta" id="contact" aria-labelledby="talk">
+      <div class="wrap cta-inner">
+        <div>
+          <h2 id="talk">If you run a van, or your child rides one</h2>
+          <p>The driver app and the alerts work. I am still learning what drivers and parents need. I would like to hear from you.</p>
+        </div>
+        <p><a class="button yellow" href="mailto:CONTACT_EMAIL">Write to Aqib</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap foot-inner">
+      <span class="brand small">
+        <svg class="logo logo-dark" viewBox="0 0 512 512" aria-hidden="true">
+          <rect width="512" height="512" rx="96"/>
+          <circle cx="256" cy="256" r="132" fill="none" stroke-width="32"/>
+          <path d="M196 262l44 44 84-96" fill="none" stroke-width="32" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>TapSafe</span>
+      </span>
+      <p>Built in Bangalore.</p>
+    </div>
+  </footer>
+  <script>
+    (function () {
+      var phone = document.querySelector(".phone");
+      if (!phone || !("IntersectionObserver" in window)) return;
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      new IntersectionObserver(function (entries, observer) {
+        if (entries[0].isIntersecting) {
+          phone.classList.add("animate");
+          observer.disconnect();
+        }
+      }, { threshold: 0.5 }).observe(phone);
+    })();
+  </script>
+</body>
+</html>
