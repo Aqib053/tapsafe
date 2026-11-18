@@ -13,62 +13,102 @@
   <link rel="stylesheet" href="css/site.css">
 </head>
 <body>
-  <header class="wrap top">
-    <p class="mark">TapSafe</p>
-    <a class="top-link" href="#contact">Get in touch</a>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <p class="mark">TapSafe</p>
+      <a class="nav-link" href="#contact">Get in touch</a>
+    </div>
   </header>
 
   <main>
-    <section class="wrap hero">
-      <h1>A message when your child is home.</h1>
-      <p class="lead">TapSafe tells a parent on Telegram when their child gets on the school van and when they reach home. The driver taps once per child. That is all the driver has to do.</p>
-      <p class="status">Piloting on one van in Bangalore.</p>
-    </section>
-
-    <section class="wrap" aria-labelledby="how">
-      <h2 id="how">How a trip works</h2>
-      <ol class="steps">
-        <li>The driver starts the trip and taps a child's name when the child gets on.</li>
-        <li>The parent gets a Telegram message right away.</li>
-        <li>At each home stop the driver taps again, and the parent gets a second message.</li>
-      </ol>
-      <p>If a child has been on board for an hour without being dropped, the parent and the driver both get a reminder.</p>
-    </section>
-
-    <section class="wrap" aria-labelledby="see">
-      <h2 id="see">What a parent sees</h2>
-      <div class="chat" role="img" aria-label="Two example Telegram messages: Rahul boarded KA-01-XX-1234, and Rahul reached home.">
-        <p class="msg"><span>Rahul boarded KA-01-XX-1234</span><time>2:41 pm</time></p>
-        <p class="msg"><span>Rahul reached home</span><time>3:12 pm</time></p>
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <p class="status">Piloting on one van in Bangalore</p>
+          <h1>A message when your child is home.</h1>
+          <p class="lead">TapSafe tells a parent on Telegram when their child gets on the school van and when they reach home. The driver taps once per child. That is all the driver has to do.</p>
+          <p><a class="button" href="#contact">Get in touch</a></p>
+        </div>
+        <figure class="shot">
+          <img src="images/driver-app.png" width="480" height="860" alt="The driver app during a trip. A list of four children. One is home, one is on board, two have not boarded. Each row has one large button.">
+          <figcaption>The driver app, with demo data.</figcaption>
+        </figure>
       </div>
-      <p class="note">Example messages. Names and the van number are made up.</p>
     </section>
 
-    <section class="wrap" aria-labelledby="why">
-      <h2 id="why">Why taps and not GPS</h2>
-      <p>Many school bus apps track the vehicle with GPS and are sold to schools. A lot of families use a private van that no school manages. TapSafe runs on the driver's own Android phone, needs no hardware, and does not need the school to be involved.</p>
-      <p>The driver app also works on a weak connection. Taps are saved on the phone and sent when the network comes back.</p>
+    <section class="section" aria-labelledby="how">
+      <div class="wrap">
+        <h2 id="how">How a trip works</h2>
+        <ol class="steps">
+          <li>
+            <h3>Child gets on</h3>
+            <p>The driver starts the trip and taps the child's name.</p>
+          </li>
+          <li>
+            <h3>Parent is told</h3>
+            <p>A Telegram message reaches the parent right away.</p>
+          </li>
+          <li>
+            <h3>Child reaches home</h3>
+            <p>At the stop the driver taps again, and the parent gets a second message.</p>
+          </li>
+        </ol>
+        <p class="after">If a child has been on board for an hour without being dropped, the parent and the driver both get a reminder.</p>
+      </div>
     </section>
 
-    <section class="wrap" aria-labelledby="limits">
-      <h2 id="limits">What it does not do</h2>
-      <ul class="plain">
-        <li>It does not show a live map.</li>
-        <li>It covers the afternoon trip only, from school to home.</li>
-        <li>Alerts go to the parent and the driver, and to nobody else.</li>
-        <li>The driver's app never shows a parent's phone number or Telegram details.</li>
-      </ul>
+    <section class="section panel" aria-labelledby="see">
+      <div class="wrap split">
+        <div>
+          <h2 id="see">What a parent sees</h2>
+          <p>Two short messages for each trip. Nothing to open, nothing to log in to. Parents only need Telegram.</p>
+          <p class="note">Example messages. The name and the van number are made up.</p>
+        </div>
+        <div class="chat" role="img" aria-label="Two example Telegram messages: Rahul boarded KA-01-XX-1234, and Rahul reached home.">
+          <p class="msg"><span>Rahul boarded KA-01-XX-1234</span><time>2:41 pm</time></p>
+          <p class="msg"><span>Rahul reached home</span><time>3:12 pm</time></p>
+        </div>
+      </div>
     </section>
 
-    <section class="wrap contact" id="contact" aria-labelledby="talk">
-      <h2 id="talk">If you run a van, or your child rides one</h2>
-      <p>The driver app and the alerts work. I am still learning what drivers and parents need. I would like to hear from you.</p>
-      <p><a class="button" href="mailto:CONTACT_EMAIL">Write to Aqib</a></p>
+    <section class="section" aria-labelledby="why">
+      <div class="wrap split">
+        <h2 id="why">Why taps and not GPS</h2>
+        <div>
+          <p>Many school bus apps track the vehicle with GPS and are sold to schools. A lot of families use a private van that no school manages.</p>
+          <p>TapSafe runs on the driver's own Android phone, needs no hardware, and does not need the school to be involved.</p>
+          <p>It also works on a weak connection. Taps are saved on the phone and sent when the network comes back.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section rule" aria-labelledby="limits">
+      <div class="wrap split">
+        <h2 id="limits">What it does not do</h2>
+        <ul class="plain">
+          <li>It does not show a live map.</li>
+          <li>It covers the afternoon trip only, from school to home.</li>
+          <li>Alerts go to the parent and the driver, and to nobody else.</li>
+          <li>The driver's app never shows a parent's phone number or Telegram details.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="cta" id="contact" aria-labelledby="talk">
+      <div class="wrap cta-inner">
+        <div>
+          <h2 id="talk">If you run a van, or your child rides one</h2>
+          <p>The driver app and the alerts work. I am still learning what drivers and parents need. I would like to hear from you.</p>
+        </div>
+        <p><a class="button inverse" href="mailto:CONTACT_EMAIL">Write to Aqib</a></p>
+      </div>
     </section>
   </main>
 
-  <footer class="wrap foot">
-    <p>TapSafe. Built in Bangalore.</p>
+  <footer class="foot">
+    <div class="wrap">
+      <p>TapSafe. Built in Bangalore.</p>
+    </div>
   </footer>
 </body>
 </html>
