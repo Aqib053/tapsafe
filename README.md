@@ -32,7 +32,9 @@ web/              the driver app (static, no build step)
   js/             app.js (screens, offline queue), api.js (Supabase and demo mode), config.js
   css/            styles.css
   icons/
-supabase/         database schema, later Edge Functions
+site/             landing page (static, deploys as its own Vercel project)
+supabase/         database schema, Edge Functions, migrations
+scripts/          test and setup scripts
 docs/             setup steps and notes
 CLAUDE.md         project context for Claude Code
 ```
