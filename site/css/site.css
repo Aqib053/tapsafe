@@ -61,6 +61,8 @@ h1, h2 { font-family: var(--serif); letter-spacing: -0.015em; }
 /* hero */
 .hero { background: var(--green); color: var(--cream); padding-bottom: clamp(3rem, 7vw, 6rem); }
 
+.navbar { border-bottom: 1px solid rgba(246, 242, 232, 0.28); }
+
 .nav {
   display: flex;
   align-items: center;
