@@ -8,31 +8,43 @@
   <meta property="og:type" content="website">
   <meta property="og:title" content="TapSafe: a message when your child is home">
   <meta property="og:description" content="A Telegram message when your child gets on the school van and when they reach home. One tap per child for the driver. Piloting in Bangalore.">
-  <meta name="theme-color" content="#f4f1ea">
+  <meta name="theme-color" content="#0a5c42">
   <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="css/site.css">
 </head>
 <body>
-  <header class="nav">
-    <div class="wrap nav-inner">
-      <p class="mark">TapSafe</p>
+  <header class="hero">
+    <div class="wrap nav">
+      <a class="brand" href="#top" aria-label="TapSafe home">
+        <svg class="logo" viewBox="0 0 512 512" aria-hidden="true">
+          <rect width="512" height="512" rx="96"/>
+          <circle cx="256" cy="256" r="132" fill="none" stroke-width="32"/>
+          <path d="M196 262l44 44 84-96" fill="none" stroke-width="32" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>TapSafe</span>
+      </a>
       <a class="nav-link" href="#contact">Get in touch</a>
+    </div>
+
+    <div class="wrap hero-grid" id="top">
+      <div class="hero-copy">
+        <p class="eyebrow">Piloting on one van in Bangalore</p>
+        <h1>A message when your child is <em>home.</em></h1>
+        <p class="lead">TapSafe tells a parent on Telegram when their child gets on the school van and when they reach home. The driver taps once per child. That is all the driver has to do.</p>
+        <p><a class="button yellow" href="#contact">Get in touch</a></p>
+      </div>
+      <figure class="shot">
+        <img src="images/driver-app.png" width="480" height="860" alt="The driver app during a trip. A list of four children. One is home, one is on board, two have not boarded. Each row has one large button.">
+        <figcaption>The driver app, with demo data.</figcaption>
+      </figure>
     </div>
   </header>
 
   <main>
-    <section class="hero">
-      <div class="wrap hero-grid">
-        <div class="hero-copy">
-          <p class="status">Piloting on one van in Bangalore</p>
-          <h1>A message when your child is home.</h1>
-          <p class="lead">TapSafe tells a parent on Telegram when their child gets on the school van and when they reach home. The driver taps once per child. That is all the driver has to do.</p>
-          <p><a class="button" href="#contact">Get in touch</a></p>
-        </div>
-        <figure class="shot">
-          <img src="images/driver-app.png" width="480" height="860" alt="The driver app during a trip. A list of four children. One is home, one is on board, two have not boarded. Each row has one large button.">
-          <figcaption>The driver app, with demo data.</figcaption>
-        </figure>
+    <section class="problem" aria-labelledby="problem">
+      <div class="wrap">
+        <p class="label" id="problem">The problem</p>
+        <p class="problem-line">Most afternoons, a parent somewhere is calling a van driver to ask: has my child reached yet?</p>
       </div>
     </section>
 
@@ -57,7 +69,7 @@
       </div>
     </section>
 
-    <section class="section panel" aria-labelledby="see">
+    <section class="section tint" aria-labelledby="see">
       <div class="wrap split">
         <div>
           <h2 id="see">What a parent sees</h2>
@@ -100,14 +112,22 @@
           <h2 id="talk">If you run a van, or your child rides one</h2>
           <p>The driver app and the alerts work. I am still learning what drivers and parents need. I would like to hear from you.</p>
         </div>
-        <p><a class="button inverse" href="mailto:CONTACT_EMAIL">Write to Aqib</a></p>
+        <p><a class="button yellow" href="mailto:CONTACT_EMAIL">Write to Aqib</a></p>
       </div>
     </section>
   </main>
 
   <footer class="foot">
-    <div class="wrap">
-      <p>TapSafe. Built in Bangalore.</p>
+    <div class="wrap foot-inner">
+      <span class="brand small">
+        <svg class="logo logo-dark" viewBox="0 0 512 512" aria-hidden="true">
+          <rect width="512" height="512" rx="96"/>
+          <circle cx="256" cy="256" r="132" fill="none" stroke-width="32"/>
+          <path d="M196 262l44 44 84-96" fill="none" stroke-width="32" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>TapSafe</span>
+      </span>
+      <p>Built in Bangalore.</p>
     </div>
   </footer>
 </body>
