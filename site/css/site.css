@@ -277,6 +277,29 @@ h2 { font-size: clamp(1.75rem, 3.6vw, 2.5rem); line-height: 1.15; }
 .plain { margin: 0; padding-left: 1.25rem; }
 .plain li { margin-bottom: 0.7rem; padding-left: 0.25rem; }
 
+/* questions */
+.faq details { border-top: 1px solid var(--line); }
+.faq details:last-child { border-bottom: 1px solid var(--line); }
+.faq summary {
+  position: relative;
+  padding: 1.1rem 2.5rem 1.1rem 0;
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after {
+  content: "+";
+  position: absolute;
+  right: 0.25rem;
+  top: 0.85rem;
+  font: 400 1.5rem/1 var(--sans);
+  color: var(--green-text);
+}
+.faq details[open] summary::after { content: "\2212"; }
+.faq summary:focus-visible { outline: 3px solid var(--yellow); outline-offset: 2px; }
+.faq details p { margin: 0 0 1.1rem; max-width: 36rem; color: var(--muted); }
+
 /* contact band */
 .cta { background: var(--green); color: var(--cream); padding: clamp(3rem, 7vw, 5rem) 0; }
 .cta-inner { display: grid; gap: 1.5rem; align-items: center; }
